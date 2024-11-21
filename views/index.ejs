@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoo Management</title>
+    <style>
+        /* Styling CSS yang sudah ada */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;  /* Make sure content starts from the top */
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Align the content section center */
+            padding: 20px;
+            width: 80%;
+            max-width: 1200px;
+            flex-grow: 1;  /* Allow the content to grow and take available space */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        .add-animal form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center; /* Center the form inputs */
+        }
+
+        .add-animal input {
+            padding: 8px;
+            font-size: 14px;
+            width: 200px;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .btn-sm {
+            font-size: 12px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <!-- Tabel Daftar Hewan -->
+        <section class="animal-list section">
+            <h2>Daftar Hewan</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nama Hewan</th>
+                        <th>Spesies</th>
+                        <th>Umur (Tahun)</th>
+                        <th>Operasi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% hewan.forEach(function(hewan) { %>
+                        <tr>
+                            <td><%= hewan.name %></td>
+                            <td><%= hewan.species %></td>
+                            <td><%= hewan.age %></td>
+                            <td>
+                                <!-- Form untuk menghapus hewan -->
+                                <form action="/delete/<%= hewan.id %>" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                </form>
+                                 
+                                <!-- Form untuk mengupdate data hewan -->
+                                <form action="/update/<%= hewan.id %>" method="POST" style="display:inline;">
+                                    <input type="text" name="name" value="<%= hewan.name %>" required class="form-control form-control-sm d-inline-block" style="width: 120px;">
+                                    <input type="text" name="species" value="<%= hewan.species %>" required class="form-control form-control-sm d-inline-block" style="width: 120px;">
+                                    <input type="number" name="age" value="<%= hewan.age %>" required class="form-control form-control-sm d-inline-block" style="width: 60px;">
+                                    <button type="submit" class="btn btn-warning btn-sm">Update</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Form untuk menambah hewan -->
+        <section class="add-animal section">
+            <h2>Tambah Hewan</h2>
+            <form action="/add" method="POST">
+                <div>
+                    <label>Nama Hewan:</label><br>
+                    <input type="text" name="name" required><br>
+                </div>
+                
+                <div>
+                    <label>Spesies:</label><br>
+                    <input type="text" name="species" required><br>
+                </div>
+                
+                <div>
+                    <label>Umur:</label><br>
+                    <input type="number" name="age" required><br><br>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Tambah Hewan</button>
+            </form>
+        </section>
+    </div>
+
+</body>
+</html>

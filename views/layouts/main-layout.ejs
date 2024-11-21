@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        /* Mengatur seluruh body agar konten di tengah secara vertikal dan horizontal */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Allow space between header, content, and footer */
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 20px; /* Optional: adds space between header and content */
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Menambahkan margin untuk konten utama */
+        .content {
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Zoo</h1>
+    </header>
+
+    <!-- Isi halaman yang akan di-include -->
+    <div class="content">
+        <%- body %>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Kebun Binatang Tatang</p>
+    </footer>
+</body>
+</html>
